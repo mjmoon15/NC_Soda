@@ -1,0 +1,347 @@
+/* ─────────────────────────────────────────────────────────────
+   New Creation Soda — global styles (plain CSS, no framework)
+   Design tokens live in :root; reusable classes below.
+   Component-specific layout lives in co-located *.module.css files.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* palette */
+  --cream: #fbf7ee;
+  --sand: #f3ebd9;
+  --ink: #16271c;
+  --ink-soft: #41514a;
+  --muted: #6b7a72;
+  --line: rgba(22, 39, 28, 0.1);
+
+  --brand-50: #eff8f1;
+  --brand-100: #d7eedd;
+  --brand-200: #b0dcbd;
+  --brand-300: #7fc397;
+  --brand-400: #4fa66f;
+  --brand-500: #2e8b54;
+  --brand-600: #1f6f42;
+  --brand-700: #195838;
+  --brand-800: #15462e;
+  --brand-900: #103527;
+
+  --coral-300: #fbb6c1;
+  --coral-400: #f88fa0;
+  --coral-500: #f4708a;
+  --coral-600: #e85575;
+
+  --citrus-100: #fdf0cf;
+  --citrus-400: #f8c75a;
+  --citrus-500: #f6b53f;
+  --citrus-600: #e89e20;
+
+  --surface: #fff;
+
+  /* effects */
+  --radius-sm: 0.6rem;
+  --radius: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --shadow-soft: 0 8px 30px rgba(22, 39, 28, 0.08);
+  --shadow-lift: 0 18px 40px rgba(22, 39, 28, 0.12);
+
+  /* fonts (assigned by next/font in layout.tsx) */
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-sans: system-ui, -apple-system, sans-serif;
+
+  --header-h: 68px;
+}
+
+/* reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  font-family: var(--font-sans);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  line-height: 1.1;
+  font-weight: 600;
+  color: var(--ink);
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+::selection {
+  background: var(--brand-200);
+  color: var(--brand-900);
+}
+
+/* visible keyboard focus everywhere (WCAG) */
+:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.btn:focus-visible {
+  outline-offset: 3px;
+}
+
+/* ── layout helpers ───────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+@media (min-width: 640px) {
+  .container {
+    padding-inline: 32px;
+  }
+}
+.section {
+  padding-block: 64px;
+}
+@media (min-width: 768px) {
+  .section {
+    padding-block: 88px;
+  }
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  align-items: center;
+}
+.dot-grid {
+  background-image: radial-gradient(rgba(22, 39, 28, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* ── typography helpers ───────────────────────────────────── */
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand-600);
+}
+.lead {
+  font-size: 1.125rem;
+  color: var(--ink-soft);
+}
+.muted {
+  color: var(--muted);
+}
+
+/* ── buttons ──────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.7rem 1.4rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1;
+  transition: transform 0.12s ease, background 0.15s ease, box-shadow 0.15s ease,
+    border-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--brand-500);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--brand-600);
+  box-shadow: var(--shadow-soft);
+}
+.btn-coral {
+  background: var(--coral-500);
+  color: #fff;
+}
+.btn-coral:hover {
+  background: var(--coral-600);
+  box-shadow: var(--shadow-soft);
+}
+.btn-outline {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--ink);
+}
+.btn-outline:hover {
+  border-color: var(--brand-400);
+  color: var(--brand-700);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+}
+.btn-ghost:hover {
+  background: rgba(22, 39, 28, 0.05);
+}
+.btn-sm {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+}
+.btn-lg {
+  padding: 0.9rem 1.8rem;
+  font-size: 1.05rem;
+}
+.btn-block {
+  width: 100%;
+}
+
+/* ── cards ────────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+.card-pad {
+  padding: 1.5rem;
+}
+
+/* ── badges / pills ───────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.badge-brand {
+  background: var(--brand-100);
+  color: var(--brand-700);
+}
+.badge-coral {
+  background: var(--coral-300);
+  color: var(--coral-600);
+}
+.badge-citrus {
+  background: var(--citrus-100);
+  color: var(--citrus-600);
+}
+.badge-neutral {
+  background: var(--sand);
+  color: var(--ink-soft);
+}
+
+/* ── form fields ──────────────────────────────────────────── */
+.field {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  background: #fff;
+  font-size: 0.95rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.field:focus {
+  outline: none;
+  border-color: var(--brand-400);
+  box-shadow: 0 0 0 3px var(--brand-100);
+}
+.label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--ink-soft);
+}
+
+/* ── tables ───────────────────────────────────────────────── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.table th {
+  text-align: left;
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+.table td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+.table tbody tr:hover {
+  background: var(--brand-50);
+}
+
+/* ── utilities ────────────────────────────────────────────── */
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out both;
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

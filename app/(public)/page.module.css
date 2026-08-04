@@ -1,0 +1,180 @@
+/* ── hero ─────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+.heroTitle {
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  letter-spacing: -0.01em;
+  margin: 0.75rem 0 1.1rem;
+}
+.heroTitle em {
+  font-style: italic;
+  color: var(--brand-600);
+}
+.heroSub {
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  max-width: 46ch;
+  margin-bottom: 1.75rem;
+}
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* hero can cluster */
+.heroArt {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  align-items: end;
+}
+.heroArt > :nth-child(2) {
+  transform: translateY(-18px) scale(1.08);
+  z-index: 2;
+}
+.heroArt > :nth-child(1),
+.heroArt > :nth-child(3) {
+  opacity: 0.92;
+}
+
+/* ── section heads ────────────────────────────────────── */
+.sectionHead {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.sectionHead h2 {
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+}
+.headRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* ── featured strip ───────────────────────────────────── */
+.featuredGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 560px) {
+  .featuredGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 980px) {
+  .featuredGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ── three ways ───────────────────────────────────────── */
+.ways {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+.way {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.way:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lift);
+}
+.wayIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  margin-bottom: 0.5rem;
+}
+.wayTitle {
+  font-size: 1.35rem;
+}
+.wayBody {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  flex: 1;
+}
+.wayLink {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--brand-700);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.wayLink:hover {
+  gap: 0.5rem;
+}
+@media (min-width: 820px) {
+  .ways {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── video teaser ─────────────────────────────────────── */
+.teaser {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+@media (min-width: 860px) {
+  .teaser {
+    grid-template-columns: 0.85fr 1.15fr;
+  }
+}
+
+/* ── closing CTA band ─────────────────────────────────── */
+.band {
+  position: relative;
+  overflow: hidden;
+  background: var(--brand-700);
+  color: var(--cream);
+  border-radius: var(--radius-xl);
+  padding: clamp(2rem, 6vw, 4rem);
+  text-align: center;
+}
+.bandTitle {
+  color: var(--cream);
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.75rem;
+}
+.bandSub {
+  color: color-mix(in srgb, var(--cream) 78%, transparent);
+  font-size: 1.1rem;
+  max-width: 48ch;
+  margin: 0 auto 1.75rem;
+}
+.bandCtas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}

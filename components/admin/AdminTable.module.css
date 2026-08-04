@@ -1,0 +1,27 @@
+.wrap {
+  overflow-x: auto;
+}
+
+.table :global(td),
+.table :global(th) {
+  white-space: nowrap;
+}
+
+/* Let the first (name/title) column breathe and wrap if needed. */
+.table :global(td):first-child,
+.table :global(th):first-child {
+  white-space: normal;
+  min-width: 180px;
+}
+
+.empty {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.actionsCol {
+  text-align: right;
+  width: 1%;
+}

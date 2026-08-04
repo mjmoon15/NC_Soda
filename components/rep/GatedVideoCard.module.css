@@ -1,0 +1,86 @@
+.card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.12s ease, box-shadow 0.15s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background-color: var(--brand-800);
+  display: grid;
+  place-items: center;
+}
+
+.lock {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--brand-800);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.play {
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  backdrop-filter: blur(2px);
+  transition: transform 0.12s ease, background 0.15s ease;
+}
+.card:hover .play {
+  transform: scale(1.06);
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.duration {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(22, 39, 28, 0.55);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.body {
+  gap: 6px;
+  flex: 1;
+}
+.title {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+.statusBadge {
+  align-self: flex-start;
+  margin-top: 4px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+  white-space: normal;
+  text-align: left;
+  line-height: 1.3;
+}
