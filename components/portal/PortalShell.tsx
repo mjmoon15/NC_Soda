@@ -18,6 +18,30 @@ export interface NavItem {
  * signed-in user block, and a sign-out action. Pages render their own heading
  * inside `children`.
  */
+function UserBlock({
+  user,
+  className,
+}: {
+  user: SessionUser;
+  className: string;
+}) {
+  return (
+    <div className={className}>
+      <div className={styles.userName}>{user.fullName}</div>
+      <div className={styles.userMeta}>
+        {user.company ?? user.email}
+        {user.isDemo ? " · demo" : ""}
+      </div>
+      <form action={signOut}>
+        <button type="submit" className="btn btn-outline btn-sm btn-block">
+          <LogOut size={15} />
+          Sign out
+        </button>
+      </form>
+    </div>
+  );
+}
+
 export function PortalShell({
   user,
   navTitle,
@@ -58,19 +82,7 @@ export function PortalShell({
 
         <div className={styles.spacer} />
 
-        <div className={styles.user}>
-          <div className={styles.userName}>{user.fullName}</div>
-          <div className={styles.userMeta}>
-            {user.company ?? user.email}
-            {user.isDemo ? " · demo" : ""}
-          </div>
-          <form action={signOut}>
-            <button type="submit" className="btn btn-outline btn-sm btn-block">
-              <LogOut size={15} />
-              Sign out
-            </button>
-          </form>
-        </div>
+        <UserBlock user={user} className={styles.user} />
       </aside>
 
       <div className={styles.main}>
@@ -78,6 +90,7 @@ export function PortalShell({
           <h1 className={styles.topTitle}>{topbarTitle}</h1>
         </header>
         <div className={styles.content}>{children}</div>
+        <UserBlock user={user} className={styles.userMobile} />
       </div>
     </div>
   );
