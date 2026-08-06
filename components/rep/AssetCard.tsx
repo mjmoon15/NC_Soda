@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Check, Download, Info } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
+import { SendToBuyerModal } from "./SendToBuyerModal";
 import type { Asset } from "@/lib/types";
 import { formatBytes } from "@/lib/utils";
 import styles from "./AssetCard.module.css";
@@ -49,14 +50,17 @@ export function AssetCard({ asset }: { asset: Asset }) {
           )}
         </>
       ) : (
-        <a
-          href={asset.fileUrl}
-          className="btn btn-primary btn-sm btn-block"
-          download
-        >
-          <Download size={15} />
-          Download
-        </a>
+        <div className="stack" style={{ gap: 8 }}>
+          <a
+            href={asset.fileUrl}
+            className="btn btn-primary btn-sm btn-block"
+            download
+          >
+            <Download size={15} />
+            Download
+          </a>
+          <SendToBuyerModal asset={asset} />
+        </div>
       )}
     </div>
   );

@@ -49,3 +49,18 @@ export const ASSETS_QUERY = groq`
     "productSlug": product->slug.current,
   }
 `;
+
+/** Single-asset read, storagePath included — used server-side by the
+ * "Send to buyer" email flow to mint a fresh signed URL. Not used for any
+ * public/rep listing (see ASSETS_QUERY for that). */
+export const ASSET_BY_ID_QUERY = groq`
+  *[_type == "repAsset" && _id == $id][0] {
+    "id": _id,
+    title,
+    description,
+    type,
+    storagePath,
+    fileType,
+    sizeBytes,
+  }
+`;

@@ -41,6 +41,17 @@ export const isMuxConfigured = Boolean(
   MUX_TOKEN_ID && MUX_TOKEN_SECRET && MUX_SIGNING_KEY_ID && MUX_SIGNING_KEY_PRIVATE
 );
 
+export const RESEND_API_KEY = process.env.RESEND_API_KEY ?? "";
+/** Must be an address at a domain verified in Resend, e.g. "reps@mail.newcreationsoda.com". */
+export const RESEND_FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? "";
+
+/**
+ * True when a Resend API key + verified sender are present. The "Send to
+ * buyer" flow on rep-only assets falls back to a "not yet connected" note
+ * when false.
+ */
+export const isResendConfigured = Boolean(RESEND_API_KEY && RESEND_FROM_EMAIL);
+
 export const SITE = {
   name: "New Creation Soda Works",
   shortName: "New Creation",

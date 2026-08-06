@@ -158,19 +158,22 @@ async function fetchSanityVideos(): Promise<Video[]> {
 }
 
 /**
- * Mints a short-lived signed URL for a gated file in the private "assets"
- * Supabase Storage bucket. Falls back to the demo placeholder when Supabase
- * isn't configured or the object has no storage path yet. Callers (the rep
+ * Mints a signed URL for a gated file in the private "assets" Supabase
+ * Storage bucket. Falls back to the demo placeholder when Supabase isn't
+ * configured or the object has no storage path yet. Callers (the rep
  * sell-sheets/search pages) are already behind app/rep/layout.tsx's
  * hasAccess(user, "rep") check.
  */
-async function signAssetUrl(storagePath?: string): Promise<string> {
+async function signAssetUrl(
+  storagePath?: string,
+  expiresInSeconds = 60 * 60 // 1 hour, used for in-page download buttons
+): Promise<string> {
   if (!storagePath || !isSupabaseConfigured) return "#demo-asset";
   const { createServiceSupabase } = await import("@/lib/supabase/server");
   const supabase = await createServiceSupabase();
   const { data, error } = await supabase.storage
     .from("assets")
-    .createSignedUrl(storagePath, 60 * 60); // 1 hour
+    .createSignedUrl(storagePath, expiresInSeconds);
   if (error || !data?.signedUrl) {
     console.error(`[signAssetUrl] failed for "${storagePath}":`, error);
     return "#demo-asset";
@@ -313,4 +316,47 @@ export async function getAssets(): Promise<Asset[]> {
   const supabase = await createServerSupabase();
   const { data } = await supabase.from("assets").select("*").order("title");
   return (data ?? []).map(mapAsset);
+}
+
+/**
+ * Server-only. Looks up one asset by id and mints a 7-day signed download
+ * URL for it — used by the "Send to buyer" email flow (app/api/rep/
+ * send-asset), which needs a longer-lived link than the 1-hour one used for
+ * in-page download buttons. Callers MUST have already verified
+ * hasAccess(user, "rep").
+ */
+export async function getAssetForSend(
+  id: string
+): Promise<
+  | (Pick<Asset, "title" | "description" | "fileType"> & { downloadUrl: string })
+  | null
+> {
+  if (isSanityConfigured) {
+    const { client } = await import("@/sanity/lib/client");
+    const { ASSET_BY_ID_QUERY } = await import("@/sanity/lib/queries");
+    const doc = await client.fetch<Row | null>(ASSET_BY_ID_QUERY, { id });
+    if (!doc) return null;
+    const downloadUrl = await signAssetUrl(
+      doc.storagePath ? String(doc.storagePath) : undefined,
+      60 * 60 * 24 * 7 // 7 days
+    );
+    return {
+      title: String(doc.title),
+      description: String(doc.description ?? ""),
+      fileType: String(doc.fileType ?? ""),
+      downloadUrl,
+    };
+  }
+  if (!isSupabaseConfigured) {
+    const a = mock.assets.find((x) => x.id === id);
+    return a
+      ? { title: a.title, description: a.description, fileType: a.fileType, downloadUrl: a.fileUrl }
+      : null;
+  }
+  const { createServerSupabase } = await import("@/lib/supabase/server");
+  const supabase = await createServerSupabase();
+  const { data } = await supabase.from("assets").select("*").eq("id", id).maybeSingle();
+  if (!data) return null;
+  const a = mapAsset(data);
+  return { title: a.title, description: a.description, fileType: a.fileType, downloadUrl: a.fileUrl };
 }
