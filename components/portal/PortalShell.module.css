@@ -131,10 +131,23 @@
     display: none;
   }
   .user {
-    border-top: 0;
-    padding-top: 0;
-    margin-top: 0;
-    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex: 1 0 100%;
+    margin-left: 0;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
+  }
+  .user :global(.btn-block) {
+    width: auto;
+  }
+  .userName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .userMeta {
     display: none;

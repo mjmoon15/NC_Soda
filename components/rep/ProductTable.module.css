@@ -88,3 +88,62 @@
   color: var(--muted);
   padding: 40px 1rem;
 }
+
+/* ── mobile: collapse the table into stacked cards ──────────── */
+@media (max-width: 720px) {
+  .searchWrap,
+  .select {
+    flex: 1 1 100%;
+  }
+  .count {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .scroll {
+    overflow-x: visible;
+  }
+  .scroll table thead {
+    display: none;
+  }
+  .scroll table,
+  .scroll table tbody,
+  .scroll table tr {
+    display: block;
+    width: 100%;
+  }
+  .scroll table tr {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .scroll table tr:last-child {
+    border-bottom: 0;
+  }
+  .scroll table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 0;
+    border-bottom: 0;
+    text-align: right;
+  }
+  .scroll table td[data-label]::before {
+    content: attr(data-label);
+    font-weight: 700;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    flex: none;
+  }
+
+  .nameCell {
+    justify-content: flex-start;
+    padding: 0 0 10px !important;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+    font-size: 1rem;
+  }
+}

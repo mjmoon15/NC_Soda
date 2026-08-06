@@ -168,7 +168,7 @@ export function ProductTable({ products }: { products: Product[] }) {
             <tbody>
               {rows.map((p) => (
                 <tr key={p.id}>
-                  <td>
+                  <td className={styles.nameCell}>
                     <span className={styles.productCell}>
                       <span
                         className={styles.swatch}
@@ -178,15 +178,23 @@ export function ProductTable({ products }: { products: Product[] }) {
                       <strong>{p.name}</strong>
                     </span>
                   </td>
-                  <td className="muted">{p.category}</td>
-                  <td className={styles.mono}>{p.sku}</td>
-                  <td className={styles.mono}>{p.upc}</td>
-                  <td className={styles.mono}>{p.caseUpc}</td>
-                  <td>{p.casePack}</td>
-                  <td>{p.unitVolume}</td>
-                  <td>{p.netWeight}</td>
-                  <td>{p.abv ?? "—"}</td>
-                  <td>{p.shelfLifeDays} days</td>
+                  <td className="muted" data-label="Category">
+                    {p.category}
+                  </td>
+                  <td className={styles.mono} data-label="SKU">
+                    {p.sku}
+                  </td>
+                  <td className={styles.mono} data-label="UPC">
+                    {p.upc}
+                  </td>
+                  <td className={styles.mono} data-label="Case UPC">
+                    {p.caseUpc}
+                  </td>
+                  <td data-label="Case Pack">{p.casePack}</td>
+                  <td data-label="Unit Vol">{p.unitVolume}</td>
+                  <td data-label="Net Wt">{p.netWeight}</td>
+                  <td data-label="ABV">{p.abv ?? "—"}</td>
+                  <td data-label="Shelf Life">{p.shelfLifeDays} days</td>
                 </tr>
               ))}
               {rows.length === 0 && (
