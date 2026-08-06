@@ -1,66 +1,8 @@
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.searchWrap {
-  position: relative;
-  flex: 1 1 280px;
-  min-width: 220px;
-}
-.searchIcon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--muted);
-  pointer-events: none;
-}
-.search {
-  padding-left: 36px;
-}
-.select {
-  flex: 0 0 auto;
-  width: auto;
-  min-width: 180px;
-}
-.count {
-  font-size: 0.85rem;
-  margin-left: auto;
-  white-space: nowrap;
-}
-
 .tableCard {
   overflow: hidden;
 }
 .scroll {
   overflow-x: auto;
-}
-
-.th {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: none;
-  border: 0;
-  padding: 0;
-  font: inherit;
-  font-weight: 700;
-  font-size: 0.74rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  cursor: pointer;
-}
-.th:hover {
-  color: var(--brand-600);
-}
-.sortIcon {
-  opacity: 0.4;
-}
-.sortIconActive {
-  color: var(--brand-600);
 }
 
 .productCell {
@@ -83,6 +25,13 @@
   white-space: nowrap;
 }
 
+.actionsCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
 .empty {
   text-align: center;
   color: var(--muted);
@@ -91,15 +40,6 @@
 
 /* ── mobile: collapse the table into stacked cards ──────────── */
 @media (max-width: 720px) {
-  .searchWrap,
-  .select {
-    flex: 1 1 100%;
-  }
-  .count {
-    margin-left: 0;
-    width: 100%;
-  }
-
   .scroll {
     overflow-x: visible;
   }
@@ -145,5 +85,12 @@
     margin-bottom: 6px;
     border-bottom: 1px solid var(--line);
     font-size: 1rem;
+  }
+
+  .scroll table td.actionsCell {
+    justify-content: flex-start;
+    padding-top: 10px !important;
+    margin-top: 4px;
+    border-top: 1px solid var(--line);
   }
 }

@@ -206,11 +206,26 @@ If you're retiring an entire seed product (not just editing it), also delete its
 
 ---
 
+## 10. Setting wholesale pricing
+
+Reps have a **Pricing** page (`/rep/pricing`) with cost/case, cost/unit, and cost/oz for every SKU — buyer-ready, with a download and a "Send to buyer" button (PDF, emailed via Resend) on every row and for the full line at once.
+
+**Setting a product's case cost:**
+
+1. Supabase dashboard → **Table Editor** → `products` → find the row by slug → edit the `case_cost` column (wholesale cost per case, in USD, e.g. `20.40`).
+2. Save. Cost/unit and cost/oz are calculated automatically from `case_cost`, `case_pack`, and `unit_volume` — nothing else to enter, and they can't drift out of sync since they're computed, not stored.
+3. Refresh `/rep/products` or `/rep/pricing` — the new numbers show immediately.
+
+A product with no `case_cost` set shows `—` for all three cost columns rather than a blank or a zero, so it's obvious at a glance what still needs pricing.
+
+---
+
 ## Quick reference
 
 | What | Where |
 |---|---|
 | Portal (sign-in is the site root) | https://nc-soda.vercel.app |
+| Buyer pricing page | https://nc-soda.vercel.app/rep/pricing |
 | Content editor | https://nc-soda.vercel.app/studio |
 | Public storefront (separate site) | https://newcreationsoda.com |
 | Accounts, roles, gated specs | [Supabase dashboard](https://supabase.com/dashboard) |
@@ -228,3 +243,5 @@ If you're retiring an entire seed product (not just editing it), also delete its
 **A user forgot their password** — easiest fix for internal accounts: Supabase → Authentication → Users → delete their account → recreate it with a new password (re-run the promote-to-admin SQL if they were an admin).
 
 **New product's specs aren't showing on `/rep/products`** — the slug in Sanity and the slug in Supabase's `products` table don't match exactly. They must be identical, character for character.
+
+**A product shows `—` for Case Cost / Cost per Unit / Cost per Oz** — `case_cost` isn't set for that product yet (see [Setting wholesale pricing](#10-setting-wholesale-pricing) above). Cost/oz specifically also needs a recognizable `unit_volume` format (`"12 fl oz"` or `"1/2 gal"`) to calculate — anything else it can't parse, it'll also show `—`.

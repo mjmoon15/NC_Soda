@@ -254,6 +254,16 @@ blockquote { border-left: 3px solid #1a7a4c; margin-left: 0; padding-left: 16px;
 <p>If the document has never been published (still says “Draft” only, no <strong>Published</strong> tab), <strong>Delete</strong> can hang on “Looking for referring documents…” — Sanity is checking the whole dataset for anything pointing at it, and that check can spin for a while. For an unpublished draft, use <strong>Discard changes</strong> instead: it deletes the same draft document immediately with a simple “Are you sure?” confirmation, no referring-documents check needed.</p>
 <p>If you’re retiring an entire seed product (not just editing it), also delete its matching row in the Supabase <code>products</code> table so stale gated specs don’t linger.</p>
 <hr />
+<h2 id="setting-wholesale-pricing">10. Setting wholesale pricing</h2>
+<p>Reps have a <strong>Pricing</strong> page (<code>/rep/pricing</code>) with cost/case, cost/unit, and cost/oz for every SKU — buyer-ready, with a download and a “Send to buyer” button (PDF, emailed via Resend) on every row and for the full line at once.</p>
+<p><strong>Setting a product’s case cost:</strong></p>
+<ol type="1">
+<li>Supabase dashboard → <strong>Table Editor</strong> → <code>products</code> → find the row by slug → edit the <code>case_cost</code> column (wholesale cost per case, in USD, e.g. <code>20.40</code>).</li>
+<li>Save. Cost/unit and cost/oz are calculated automatically from <code>case_cost</code>, <code>case_pack</code>, and <code>unit_volume</code> — nothing else to enter, and they can’t drift out of sync since they’re computed, not stored.</li>
+<li>Refresh <code>/rep/products</code> or <code>/rep/pricing</code> — the new numbers show immediately.</li>
+</ol>
+<p>A product with no <code>case_cost</code> set shows <code>—</code> for all three cost columns rather than a blank or a zero, so it’s obvious at a glance what still needs pricing.</p>
+<hr />
 <h2 id="quick-reference">Quick reference</h2>
 <table>
 <thead>
@@ -268,30 +278,34 @@ blockquote { border-left: 3px solid #1a7a4c; margin-left: 0; padding-left: 16px;
 <td>https://nc-soda.vercel.app</td>
 </tr>
 <tr class="even">
+<td>Buyer pricing page</td>
+<td>https://nc-soda.vercel.app/rep/pricing</td>
+</tr>
+<tr class="odd">
 <td>Content editor</td>
 <td>https://nc-soda.vercel.app/studio</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Public storefront (separate site)</td>
 <td>https://newcreationsoda.com</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Accounts, roles, gated specs</td>
 <td><a href="https://supabase.com/dashboard">Supabase dashboard</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Editorial content, images, video listings</td>
 <td><a href="https://sanity.io/manage">Sanity manage</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Training video hosting</td>
 <td><a href="https://dashboard.mux.com">Mux dashboard</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Email sending (send-to-buyer)</td>
 <td><a href="https://resend.com/domains">Resend dashboard</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Deployment / environment variables</td>
 <td><a href="https://vercel.com/dashboard">Vercel dashboard</a></td>
 </tr>
@@ -302,5 +316,6 @@ blockquote { border-left: 3px solid #1a7a4c; margin-left: 0; padding-left: 16px;
 <p><strong>“Object not found” when downloading a sell sheet</strong> — the Storage path in the Sanity doc doesn’t exactly match where the file lives in the bucket. Click the file in Supabase Storage → <strong>Get URL</strong> to see its real path, and match that exactly (case-sensitive, no stray folder prefix).</p>
 <p><strong>A user forgot their password</strong> — easiest fix for internal accounts: Supabase → Authentication → Users → delete their account → recreate it with a new password (re-run the promote-to-admin SQL if they were an admin).</p>
 <p><strong>New product’s specs aren’t showing on <code>/rep/products</code></strong> — the slug in Sanity and the slug in Supabase’s <code>products</code> table don’t match exactly. They must be identical, character for character.</p>
+<p><strong>A product shows <code>—</code> for Case Cost / Cost per Unit / Cost per Oz</strong> — <code>case_cost</code> isn’t set for that product yet (see <a href="#10-setting-wholesale-pricing">Setting wholesale pricing</a> above). Cost/oz specifically also needs a recognizable <code>unit_volume</code> format (<code>&quot;12 fl oz&quot;</code> or <code>&quot;1/2 gal&quot;</code>) to calculate — anything else it can’t parse, it’ll also show <code>—</code>.</p>
 </body>
 </html>

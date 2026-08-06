@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import {
   Boxes,
+  DollarSign,
   FileText,
   GraduationCap,
   LayoutDashboard,
@@ -12,6 +13,7 @@ import { getSessionUser, hasAccess } from "@/lib/auth/session";
 const REP_NAV: NavItem[] = [
   { href: "/rep", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/rep/products", label: "Product Data", icon: Boxes },
+  { href: "/rep/pricing", label: "Pricing", icon: DollarSign },
   { href: "/rep/sell-sheets", label: "Sell Sheets & POS", icon: FileText },
   { href: "/rep/training", label: "Training", icon: GraduationCap },
   { href: "/rep/search", label: "Search", icon: Search },

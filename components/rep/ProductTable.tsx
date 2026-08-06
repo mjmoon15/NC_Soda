@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { ArrowDown, ArrowUp, ChevronsUpDown, Search } from "lucide-react";
 import type { Product } from "@/lib/types";
+import { computeCostMetrics, formatCost } from "@/lib/pricing";
 import { cx } from "@/lib/utils";
 import styles from "./ProductTable.module.css";
 
@@ -163,43 +164,58 @@ export function ProductTable({ products }: { products: Product[] }) {
                     Shelf Life <SortIcon col="shelfLifeDays" />
                   </button>
                 </th>
+                <th>Case Cost</th>
+                <th>Cost/Unit</th>
+                <th>Cost/Oz</th>
               </tr>
             </thead>
             <tbody>
-              {rows.map((p) => (
-                <tr key={p.id}>
-                  <td className={styles.nameCell}>
-                    <span className={styles.productCell}>
-                      <span
-                        className={styles.swatch}
-                        style={{ background: p.color }}
-                        aria-hidden
-                      />
-                      <strong>{p.name}</strong>
-                    </span>
-                  </td>
-                  <td className="muted" data-label="Category">
-                    {p.category}
-                  </td>
-                  <td className={styles.mono} data-label="SKU">
-                    {p.sku}
-                  </td>
-                  <td className={styles.mono} data-label="UPC">
-                    {p.upc}
-                  </td>
-                  <td className={styles.mono} data-label="Case UPC">
-                    {p.caseUpc}
-                  </td>
-                  <td data-label="Case Pack">{p.casePack}</td>
-                  <td data-label="Unit Vol">{p.unitVolume}</td>
-                  <td data-label="Net Wt">{p.netWeight}</td>
-                  <td data-label="ABV">{p.abv ?? "—"}</td>
-                  <td data-label="Shelf Life">{p.shelfLifeDays} days</td>
-                </tr>
-              ))}
+              {rows.map((p) => {
+                const cost = computeCostMetrics(p);
+                return (
+                  <tr key={p.id}>
+                    <td className={styles.nameCell}>
+                      <span className={styles.productCell}>
+                        <span
+                          className={styles.swatch}
+                          style={{ background: p.color }}
+                          aria-hidden
+                        />
+                        <strong>{p.name}</strong>
+                      </span>
+                    </td>
+                    <td className="muted" data-label="Category">
+                      {p.category}
+                    </td>
+                    <td className={styles.mono} data-label="SKU">
+                      {p.sku}
+                    </td>
+                    <td className={styles.mono} data-label="UPC">
+                      {p.upc}
+                    </td>
+                    <td className={styles.mono} data-label="Case UPC">
+                      {p.caseUpc}
+                    </td>
+                    <td data-label="Case Pack">{p.casePack}</td>
+                    <td data-label="Unit Vol">{p.unitVolume}</td>
+                    <td data-label="Net Wt">{p.netWeight}</td>
+                    <td data-label="ABV">{p.abv ?? "—"}</td>
+                    <td data-label="Shelf Life">{p.shelfLifeDays} days</td>
+                    <td className={styles.mono} data-label="Case Cost">
+                      {formatCost(cost.costPerCase)}
+                    </td>
+                    <td className={styles.mono} data-label="Cost/Unit">
+                      {formatCost(cost.costPerUnit)}
+                    </td>
+                    <td className={styles.mono} data-label="Cost/Oz">
+                      {formatCost(cost.costPerOz, 4)}
+                    </td>
+                  </tr>
+                );
+              })}
               {rows.length === 0 && (
                 <tr>
-                  <td colSpan={10} className={styles.empty}>
+                  <td colSpan={13} className={styles.empty}>
                     No products match “{query}”
                     {category !== ALL ? ` in ${category}` : ""}.
                   </td>

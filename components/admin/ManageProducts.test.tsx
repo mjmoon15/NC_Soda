@@ -25,6 +25,7 @@ function product(over: Partial<Product>): Product {
     netWeight: "",
     ingredients: "",
     shelfLifeDays: 0,
+    caseCost: null,
     ...over,
   };
 }

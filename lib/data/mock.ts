@@ -28,6 +28,7 @@ export const products: Product[] = [
     ingredients:
       "Carbonated water, cane sugar, lime juice, natural key lime & vanilla flavor, citric acid.",
     shelfLifeDays: 365,
+    caseCost: 12.6,
   },
   {
     id: "p_root42",
@@ -51,6 +52,7 @@ export const products: Product[] = [
     ingredients:
       "Carbonated water, cane sugar, natural root beer flavor, vanilla extract, caramel color.",
     shelfLifeDays: 365,
+    caseCost: 12.6,
   },
   {
     id: "p_hopfin_citra",
@@ -74,6 +76,7 @@ export const products: Product[] = [
     abv: "0.0% ABV",
     ingredients: "Carbonated water, Citra hops, natural hop extract.",
     shelfLifeDays: 270,
+    caseCost: 21.6,
   },
   {
     id: "p_hopfin_mosaic",
@@ -97,6 +100,7 @@ export const products: Product[] = [
     abv: "0.0% ABV",
     ingredients: "Carbonated water, Mosaic hops, natural hop extract.",
     shelfLifeDays: 270,
+    caseCost: 21.6,
   },
   {
     id: "p_marg_classic",
@@ -120,6 +124,7 @@ export const products: Product[] = [
     ingredients:
       "Filtered water, lime juice, organic agave, natural flavor, sea salt.",
     shelfLifeDays: 540,
+    caseCost: 45.0,
   },
   {
     id: "p_marg_spicy",
@@ -143,6 +148,7 @@ export const products: Product[] = [
     ingredients:
       "Filtered water, mango puree, lime juice, organic agave, jalapeño, natural flavor.",
     shelfLifeDays: 540,
+    caseCost: 45.0,
   },
   {
     id: "p_orange_cream",
@@ -166,6 +172,7 @@ export const products: Product[] = [
     ingredients:
       "Carbonated water, cane sugar, orange juice, natural orange & vanilla flavor, citric acid.",
     shelfLifeDays: 365,
+    caseCost: 12.6,
   },
   {
     id: "p_cherry_cola",
@@ -189,6 +196,7 @@ export const products: Product[] = [
     ingredients:
       "Carbonated water, cane sugar, cherry juice, natural cola & cherry flavor, caramel color, citric acid.",
     shelfLifeDays: 365,
+    caseCost: 12.6,
   },
 ];
 

@@ -43,6 +43,7 @@ function mapProduct(r: Row): Product {
     abv: r.abv ? String(r.abv) : undefined,
     ingredients: String(r.ingredients ?? ""),
     shelfLifeDays: Number(r.shelf_life_days ?? 0),
+    caseCost: r.case_cost != null ? Number(r.case_cost) : null,
   };
 }
 
@@ -89,6 +90,7 @@ const GATED_PRODUCT_DEFAULTS = {
   abv: undefined as string | undefined,
   ingredients: "",
   shelfLifeDays: 0,
+  caseCost: null as number | null,
 };
 
 type GatedProductFields = typeof GATED_PRODUCT_DEFAULTS;
@@ -126,6 +128,7 @@ async function fetchGatedProductSpecs(): Promise<Map<string, GatedProductFields>
     abv: p.abv,
     ingredients: p.ingredients,
     shelfLifeDays: p.shelfLifeDays,
+    caseCost: p.caseCost,
   });
 
   if (isSupabaseConfigured) {

@@ -19,6 +19,7 @@ const base: Omit<Product, "id" | "name" | "category" | "sku" | "upc"> = {
   netWeight: "9 lb",
   ingredients: "",
   shelfLifeDays: 365,
+  caseCost: 20.4,
 };
 
 const products: Product[] = [

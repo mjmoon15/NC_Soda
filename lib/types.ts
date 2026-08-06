@@ -35,6 +35,8 @@ export interface Product {
   abv?: string; // hopwater = N/A, present where relevant
   ingredients: string;
   shelfLifeDays: number;
+  /** wholesale cost per case, in USD. null when not yet entered. */
+  caseCost: number | null;
 }
 
 export type VideoAccess = "public" | "rep";
