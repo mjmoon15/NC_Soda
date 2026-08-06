@@ -1,0 +1,78 @@
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color 0.12s ease;
+}
+.back:hover {
+  color: var(--brand-700);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+@media (max-width: 640px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .heroArt {
+    max-width: 220px;
+  }
+}
+
+.heroArt {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.flags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.sectionTitle {
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+}
+
+.specGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 18px 20px;
+}
+
+.specLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.specValue {
+  font-size: 1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.assetGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+  gap: 16px;
+}

@@ -2,18 +2,9 @@ import Link from "next/link";
 import { Leaf } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { CanArt } from "@/components/product/CanArt";
-import type { Product, ProductCategory } from "@/lib/types";
+import type { Product } from "@/lib/types";
+import { CATEGORY_TONE } from "@/lib/categoryTone";
 import styles from "./ProductCard.module.css";
-
-type Tone = "brand" | "coral" | "citrus" | "neutral";
-
-/** Badge tone per product category — keeps the grid colorful but on-brand. */
-const CATEGORY_TONE: Record<ProductCategory, Tone> = {
-  "Craft Soda": "brand",
-  "Sparkling Hopwater": "citrus",
-  "Margarita Mix": "coral",
-  "Sparkling Botanicals": "neutral",
-};
 
 /**
  * Public catalog card: CSS-drawn can, name, tagline, category badge, and

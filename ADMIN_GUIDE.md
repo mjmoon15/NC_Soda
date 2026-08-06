@@ -111,7 +111,7 @@ Two steps, in either order, joined by an identical slug:
 
    📸 *[Screenshot: Supabase Insert row form for products]*
 
-4. Refresh `/rep/products` — the new product should appear there, with specs showing correctly.
+4. Refresh `/rep/products` — the new product should appear there, with specs showing correctly. Clicking anywhere on its row opens a detail page (`/rep/products/<slug>`) with the full spec sheet, pricing, product image, and any sell sheets linked to it, all in one place.
 
 ---
 

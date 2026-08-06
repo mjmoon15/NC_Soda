@@ -83,6 +83,14 @@
   white-space: nowrap;
 }
 
+.row {
+  cursor: pointer;
+}
+.row:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: -2px;
+}
+
 .empty {
   text-align: center;
   color: var(--muted);

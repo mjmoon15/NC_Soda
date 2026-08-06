@@ -1,8 +1,13 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { Product } from "@/lib/types";
 import { ProductTable, filterProducts, sortProducts } from "./ProductTable";
+
+const push = vi.fn();
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push }),
+}));
 
 const base: Omit<Product, "id" | "name" | "category" | "sku" | "upc"> = {
   slug: "x",
@@ -153,5 +158,13 @@ describe("<ProductTable /> interactions", () => {
     await user.click(screen.getByRole("button", { name: /Case Pack/ }));
     const firstDataRow = screen.getAllByRole("row")[1];
     expect(firstDataRow).toHaveTextContent("Classic Lime Mix"); // casePack 6 first
+  });
+
+  it("navigates to the product detail page when a row is clicked", async () => {
+    push.mockClear();
+    const user = userEvent.setup();
+    render(<ProductTable products={products} />);
+    await user.click(screen.getByText("Parakey"));
+    expect(push).toHaveBeenCalledWith("/rep/products/x");
   });
 });

@@ -7,21 +7,12 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { cx } from "@/lib/utils";
+import { CATEGORY_TONE } from "@/lib/categoryTone";
 import { ProductForm } from "./ProductForm";
 import tableStyles from "./AdminTable.module.css";
 import styles from "./ManageHeader.module.css";
 
 type SortKey = "name" | "category" | "sku";
-
-const CATEGORY_TONE: Record<
-  Product["category"],
-  "brand" | "coral" | "citrus" | "neutral"
-> = {
-  "Craft Soda": "brand",
-  "Sparkling Hopwater": "citrus",
-  "Margarita Mix": "coral",
-  "Sparkling Botanicals": "neutral",
-};
 
 export function ManageProducts({ products }: { products: Product[] }) {
   const [query, setQuery] = useState("");

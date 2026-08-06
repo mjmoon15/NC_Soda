@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ArrowDown, ArrowUp, ChevronsUpDown, Search } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { computeCostMetrics, formatCost } from "@/lib/pricing";
@@ -41,6 +42,7 @@ export function sortProducts(
 }
 
 export function ProductTable({ products }: { products: Product[] }) {
+  const router = useRouter();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>(ALL);
   const [sortKey, setSortKey] = useState<SortKey>("name");
@@ -173,7 +175,18 @@ export function ProductTable({ products }: { products: Product[] }) {
               {rows.map((p) => {
                 const cost = computeCostMetrics(p);
                 return (
-                  <tr key={p.id}>
+                  <tr
+                    key={p.id}
+                    className={styles.row}
+                    tabIndex={0}
+                    onClick={() => router.push(`/rep/products/${p.slug}`)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        router.push(`/rep/products/${p.slug}`);
+                      }
+                    }}
+                    aria-label={`View details for ${p.name}`}
+                  >
                     <td className={styles.nameCell}>
                       <span className={styles.productCell}>
                         <span
