@@ -10,19 +10,6 @@
   max-width: 404px;
 }
 
-.back {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-bottom: 18px;
-  transition: color 0.15s ease;
-}
-.back:hover {
-  color: var(--brand-700);
-}
-
 .card {
   background: var(--surface);
   border: 1px solid var(--line);

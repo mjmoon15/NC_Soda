@@ -2,9 +2,10 @@
 
 This is the reference doc for running the New Creation Soda Works app day to day: adding new admin/rep users, and adding or editing product/video/asset content. Written for whoever's managing the site, technical or not.
 
-**Live site:** https://nc-soda.vercel.app
+This app is the **rep and buyer portal only** — there's no public storefront here. The consumer-facing site (with the real catalog, checkout, and store locator) lives at [newcreationsoda.com](https://newcreationsoda.com) on Shopify. Anyone who lands on `nc-soda.vercel.app` gets sent straight to sign-in.
+
+**Portal sign-in (also the site root):** https://nc-soda.vercel.app/login
 **Studio (content editor):** https://nc-soda.vercel.app/studio
-**Partner sign-in:** https://nc-soda.vercel.app/login
 
 ---
 
@@ -110,7 +111,7 @@ Two steps, in either order, joined by an identical slug:
 
    📸 *[Screenshot: Supabase Insert row form for products]*
 
-4. Refresh the public catalog and `/rep/products` — the new product should appear in both, with specs showing correctly on the rep side.
+4. Refresh `/rep/products` — the new product should appear there, with specs showing correctly.
 
 ---
 
@@ -209,12 +210,13 @@ If you're retiring an entire seed product (not just editing it), also delete its
 
 | What | Where |
 |---|---|
-| Live site | https://nc-soda.vercel.app |
+| Portal (sign-in is the site root) | https://nc-soda.vercel.app |
 | Content editor | https://nc-soda.vercel.app/studio |
-| Partner sign-in | https://nc-soda.vercel.app/login |
+| Public storefront (separate site) | https://newcreationsoda.com |
 | Accounts, roles, gated specs | [Supabase dashboard](https://supabase.com/dashboard) |
 | Editorial content, images, video listings | [Sanity manage](https://sanity.io/manage) |
 | Training video hosting | [Mux dashboard](https://dashboard.mux.com) |
+| Email sending (send-to-buyer) | [Resend dashboard](https://resend.com/domains) |
 | Deployment / environment variables | [Vercel dashboard](https://vercel.com/dashboard) |
 
 ---

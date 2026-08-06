@@ -1,6 +1,5 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowLeft, ShieldCheck, Sparkles, UserRound } from "lucide-react";
+import { ShieldCheck, Sparkles, UserRound } from "lucide-react";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { signInDemo } from "@/lib/auth/actions";
 import { isDemoMode } from "@/lib/config";
@@ -12,10 +11,6 @@ export default function LoginPage() {
   return (
     <main className={`dot-grid ${styles.wrap}`}>
       <div className={styles.inner}>
-        <Link href="/" className={styles.back}>
-          <ArrowLeft size={15} /> Back to site
-        </Link>
-
         <div className={styles.card}>
           <span className={styles.mark}>
             <Sparkles size={22} />

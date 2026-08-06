@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s · New Creation Soda Works",
   },
   description:
-    "Craft sodas, sparkling hopwater, and margarita mixes — made with real ingredients. Public catalog plus a partner portal for reps.",
+    "Partner portal for New Creation Soda Works reps and buyers — product specs, sell sheets, and training.",
 };
 
 export default function RootLayout({

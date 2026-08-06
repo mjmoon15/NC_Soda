@@ -104,7 +104,8 @@ blockquote { border-left: 3px solid #1a7a4c; margin-left: 0; padding-left: 16px;
 </header>
 <h1 id="new-creation-soda-app-admin-content-guide">New Creation Soda App — Admin &amp; Content Guide</h1>
 <p>This is the reference doc for running the New Creation Soda Works app day to day: adding new admin/rep users, and adding or editing product/video/asset content. Written for whoever’s managing the site, technical or not.</p>
-<p><strong>Live site:</strong> https://nc-soda.vercel.app <strong>Studio (content editor):</strong> https://nc-soda.vercel.app/studio <strong>Partner sign-in:</strong> https://nc-soda.vercel.app/login</p>
+<p>This app is the <strong>rep and buyer portal only</strong> — there’s no public storefront here. The consumer-facing site (with the real catalog, checkout, and store locator) lives at <a href="https://newcreationsoda.com">newcreationsoda.com</a> on Shopify. Anyone who lands on <code>nc-soda.vercel.app</code> gets sent straight to sign-in.</p>
+<p><strong>Portal sign-in (also the site root):</strong> https://nc-soda.vercel.app/login <strong>Studio (content editor):</strong> https://nc-soda.vercel.app/studio</p>
 <hr />
 <h2 id="how-the-app-is-put-together-read-this-once">How the app is put together (read this once)</h2>
 <p>Three systems work together behind the one live site:</p>
@@ -180,7 +181,7 @@ blockquote { border-left: 3px solid #1a7a4c; margin-left: 0; padding-left: 16px;
 <p><strong>B. Specs in Supabase:</strong> 1. Supabase → <strong>Table Editor</strong> → <code>products</code> → <strong>Insert row</strong>. 2. Fill in the <strong>same slug</strong> as the Studio doc, plus <code>sku</code>, <code>upc</code>, <code>case_upc</code>, <code>case_pack</code>, <code>unit_volume</code>, <code>net_weight</code>, <code>abv</code> (optional), <code>ingredients</code>, <code>shelf_life_days</code>. 3. Save.</p>
 <p>📸 <em>[Screenshot: Supabase Insert row form for products]</em></p>
 <ol start="4" type="1">
-<li>Refresh the public catalog and <code>/rep/products</code> — the new product should appear in both, with specs showing correctly on the rep side.</li>
+<li>Refresh <code>/rep/products</code> — the new product should appear there, with specs showing correctly.</li>
 </ol>
 <hr />
 <h2 id="adding-a-public-video-brand-or-product-spot">5. Adding a public video (brand or product spot)</h2>
@@ -263,7 +264,7 @@ blockquote { border-left: 3px solid #1a7a4c; margin-left: 0; padding-left: 16px;
 </thead>
 <tbody>
 <tr class="odd">
-<td>Live site</td>
+<td>Portal (sign-in is the site root)</td>
 <td>https://nc-soda.vercel.app</td>
 </tr>
 <tr class="even">
@@ -271,8 +272,8 @@ blockquote { border-left: 3px solid #1a7a4c; margin-left: 0; padding-left: 16px;
 <td>https://nc-soda.vercel.app/studio</td>
 </tr>
 <tr class="odd">
-<td>Partner sign-in</td>
-<td>https://nc-soda.vercel.app/login</td>
+<td>Public storefront (separate site)</td>
+<td>https://newcreationsoda.com</td>
 </tr>
 <tr class="even">
 <td>Accounts, roles, gated specs</td>
@@ -287,6 +288,10 @@ blockquote { border-left: 3px solid #1a7a4c; margin-left: 0; padding-left: 16px;
 <td><a href="https://dashboard.mux.com">Mux dashboard</a></td>
 </tr>
 <tr class="odd">
+<td>Email sending (send-to-buyer)</td>
+<td><a href="https://resend.com/domains">Resend dashboard</a></td>
+</tr>
+<tr class="even">
 <td>Deployment / environment variables</td>
 <td><a href="https://vercel.com/dashboard">Vercel dashboard</a></td>
 </tr>

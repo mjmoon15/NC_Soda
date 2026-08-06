@@ -34,7 +34,7 @@ export function PortalShell({
   return (
     <div className={styles.shell}>
       <aside className={styles.sidebar}>
-        <Link href="/" className={styles.brand}>
+        <Link href={nav[0]?.href ?? "/login"} className={styles.brand}>
           <span className={styles.brandDot}>
             <Sparkles size={15} />
           </span>
