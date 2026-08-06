@@ -15,11 +15,12 @@ type SortKey = "name" | "category" | "sku";
 
 const CATEGORY_TONE: Record<
   Product["category"],
-  "brand" | "coral" | "citrus"
+  "brand" | "coral" | "citrus" | "neutral"
 > = {
   "Craft Soda": "brand",
   "Sparkling Hopwater": "citrus",
   "Margarita Mix": "coral",
+  "Sparkling Botanicals": "neutral",
 };
 
 export function ManageProducts({ products }: { products: Product[] }) {

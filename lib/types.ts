@@ -9,7 +9,8 @@ export type UserRole = "public" | "rep" | "admin";
 export type ProductCategory =
   | "Craft Soda"
   | "Sparkling Hopwater"
-  | "Margarita Mix";
+  | "Margarita Mix"
+  | "Sparkling Botanicals";
 
 export interface Product {
   id: string;

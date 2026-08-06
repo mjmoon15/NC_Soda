@@ -45,7 +45,12 @@ export const product = defineType({
       title: "Category",
       type: "string",
       options: {
-        list: ["Craft Soda", "Sparkling Hopwater", "Margarita Mix"],
+        list: [
+          "Craft Soda",
+          "Sparkling Hopwater",
+          "Margarita Mix",
+          "Sparkling Botanicals",
+        ],
       },
       validation: (Rule) => Rule.required(),
     }),

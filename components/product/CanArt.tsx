@@ -25,7 +25,9 @@ export function CanArt({
       ? "Hopwater"
       : product.category === "Margarita Mix"
         ? "Mixer"
-        : "Craft Soda";
+        : product.category === "Sparkling Botanicals"
+          ? "Botanical"
+          : "Craft Soda";
 
   return (
     <div className={cx(styles.wrap, className)} style={style} aria-hidden>

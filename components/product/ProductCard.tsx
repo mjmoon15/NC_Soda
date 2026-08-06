@@ -12,6 +12,7 @@ const CATEGORY_TONE: Record<ProductCategory, Tone> = {
   "Craft Soda": "brand",
   "Sparkling Hopwater": "citrus",
   "Margarita Mix": "coral",
+  "Sparkling Botanicals": "neutral",
 };
 
 /**

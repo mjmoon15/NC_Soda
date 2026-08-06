@@ -32,6 +32,7 @@ const CATEGORY_OPTIONS: { value: ProductCategory; label: string }[] = [
   { value: "Craft Soda", label: "Craft Soda" },
   { value: "Sparkling Hopwater", label: "Sparkling Hopwater" },
   { value: "Margarita Mix", label: "Margarita Mix" },
+  { value: "Sparkling Botanicals", label: "Sparkling Botanicals" },
 ];
 
 const EMPTY: ProductFormValues = {
