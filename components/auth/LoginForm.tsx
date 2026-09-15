@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import Link from "next/link";
 import { LogIn } from "lucide-react";
 import { signInPassword } from "@/lib/auth/actions";
 
@@ -37,6 +38,14 @@ export function LoginForm() {
           className="field"
           placeholder="••••••••"
         />
+        <p style={{ textAlign: "right", margin: "6px 0 0" }}>
+          <Link
+            href="/forgot-password"
+            style={{ fontSize: "0.8rem", color: "var(--muted)" }}
+          >
+            Forgot your password?
+          </Link>
+        </p>
       </div>
 
       {state?.error ? (
